@@ -44,3 +44,8 @@ jobs:
           echo "github.event.workflow_dispatch.ref=${{ github.event.workflow_dispatch.ref}}"
           echo "github.event.workflow_call.ref=${{ github.event.workflow_calls.ref}}"
 
+      - name: Work backwards for shas
+        shell: bash
+        run: |
+          echo "sha_short=$(git rev-parse --short "$GITHUB_SHA")"
+          echo "branch=$(echo ${GITHUB_REF#refs/heads/})"ss
