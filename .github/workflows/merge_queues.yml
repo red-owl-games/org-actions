@@ -1,0 +1,43 @@
+# **what?**
+# Figure out what ref is available for you event
+
+# **why?**
+# Docs aren't great
+
+# **when?**
+# Anytime you're stuck
+
+name: "Trigger Ref Test Tests"
+
+on:
+  merge_group:
+    types: [checks_requested]
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+permissions: read-all
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  refs:
+    name: "Display Refs"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Available Refs"
+        id: what-the-ref
+        run: |
+          echo "Event=${{ github.event_name }}"
+          echo "github.event.merge_group.head_sha=${{ github.event.merge_group.head_sha}}"
+          echo "github.event.pull_request.merge_commit_sha=${{ github.event.pull_request.merge_commit_sha }}"
+          echo "github.event.pull_request.head=${{ github.event.pull_request.head }}"
+          echo "github.event.pull_request.base.sha=${{ github.event.pull_request.base.sha }}"
+          echo "github.event.ref_type=${{ github.event.ref_type }}"
+          echo "github.event.ref=${{ github.event.ref}}"
+          echo "github.event.workflow_dispatch.ref=${{ github.event.workflow_dispatch.ref}}"
+          echo "github.event.workflow_call.ref=${{ github.event.workflow_calls.ref}}"
+
