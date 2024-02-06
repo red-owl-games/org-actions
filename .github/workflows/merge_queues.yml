@@ -8,6 +8,7 @@
 # Anytime you're stuck
 
 name: "Trigger Ref Test Tests"
+run-name: "Trigger Refs for ${{ github.event_name }}"
 
 on:
   merge_group:
